@@ -1,7 +1,7 @@
 import React from 'react';
 
 class TodoForm extends React.Component{
-
+    // Constructor with state
     constructor(){
         super();
         this.state = {
@@ -10,12 +10,16 @@ class TodoForm extends React.Component{
     }
 
     handleChange = e => {
+        // update state with each keystroke
+        this.setState({ task: e.target.value });
+    };
 
-        this.setState({ task: e.target.value  });
-    }
-
-
-    submitTask = e => {};
+    // class property to submit form
+    submitTask = e => {
+        e.preventDefault();
+        this.props.addTask(this.state.task);
+        this.setState({ tast:'' })
+    };
 
     render(){
         return (

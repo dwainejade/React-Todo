@@ -5,7 +5,7 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import "./components/Todo.css";
 
-const tasks = [
+const todos = [
   {
     task: 'Do homework',
     id: 1,
@@ -43,7 +43,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tasks
+      todos
     };
   }
   
@@ -53,10 +53,10 @@ class App extends React.Component {
     // In the grocery array, find the task that was clicked
     // (looking for the task with taskId)
     // toggleTask the completed field on that task
-    // Return all other tasks untouched
+    // Return all other todos untouched
     this.setState({
       // Build a new state object each time!
-      tasks: this.state.tasks.map(task => {
+      todos: this.state.todos.map(task => {
           if (taskId === task.id) {
             return {
               // return the task with completed field toggled
@@ -77,14 +77,14 @@ class App extends React.Component {
         completed: false
       };
       this.setState({
-        tasks: [...this.state.tasks, newTask]
+        todos: [...this.state.todos, newTask]
       });
     };
 
     clearCompleted = e => {
       e.preventDefault();
       this.setState({
-        tasks: this.state.tasks.filter(task => !task.completed)
+        todos: this.state.todos.filter(task => !task.completed)
       });
     };
 
@@ -96,7 +96,7 @@ render(){
           <TodoForm addTask={this.addTask} />
         </div>
         <TodoList
-          tasks={this.state.tasks}
+          todos={this.state.todos}
           toggleTask={this.toggleTask}
           clearCompleted={this.clearCompleted}
         />
