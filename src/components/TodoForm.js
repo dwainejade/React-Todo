@@ -1,6 +1,7 @@
 import React from 'react';
 
 class TodoForm extends React.Component{
+
     constructor(){
         super();
         this.state = {
@@ -9,14 +10,16 @@ class TodoForm extends React.Component{
     }
 
     handleChange = e => {
+
         this.setState({ task: e.target.value  });
     }
 
-    toggleTask = e => {};
+
+    submitTask = e => {};
 
     render(){
         return (
-            <form onSubmit={this.toggleTask}>
+            <form onSubmit={this.submitTask}>
                 <input 
                     type='text'
                     name='task'

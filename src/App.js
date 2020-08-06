@@ -1,22 +1,39 @@
 import React from 'react';
+
+
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import "./components/Todo.css";
 
 const tasks = [
   {
-    task: 'homework',
+    task: 'Do homework',
     id: 1,
     completed: false
   },
   {
-    task: 'prep for tomorrows lecture',
+    task: 'Prep for tomorrows lecture',
     id: 2,
     completed: false
   },
   {
-    task: 'take a break',
+    task: 'Take a break',
     id: 3,
+    completed: false
+  },
+  {
+    task: "Make dinner",
+    id: 4,
+    completed: false
+  },
+  {
+    task: "Clean room",
+    id: 5,
+    completed: false
+  },
+  {
+    task: "Check emails",
+    id: 6,
     completed: false
   }
 ]
@@ -35,14 +52,14 @@ class App extends React.Component {
     console.log(taskId);
     // In the grocery array, find the task that was clicked
     // (looking for the task with taskId)
-    // toggleTask the purchased field on that task
+    // toggleTask the completed field on that task
     // Return all other tasks untouched
     this.setState({
       // Build a new state object each time!
       tasks: this.state.tasks.map(task => {
           if (taskId === task.id) {
             return {
-              // return the task with purchased field toggled
+              // return the task with completed field toggled
               ...task,
               completed: !task.completed
             };
@@ -64,16 +81,24 @@ class App extends React.Component {
       });
     };
 
+    clearCompleted = e => {
+      e.preventDefault();
+      this.setState({
+        tasks: this.state.tasks.filter(task => !task.completed)
+      });
+    };
+
 render(){
   return (
       <div className='App'>
         <div className='header'>
           <h2>My todo List:</h2>
-          <TodoForm />
+          <TodoForm addTask={this.addTask} />
         </div>
         <TodoList
           tasks={this.state.tasks}
           toggleTask={this.toggleTask}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
